@@ -1,0 +1,145 @@
+.cards{
+    width: 275px;
+    //height: 125px;
+    margin-left: 10px;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    min-width: 280px;
+    border-radius: 15px;
+    
+}
+.pin_other{
+    width: 100%;
+   text-align:left;
+}
+
+.title{
+    border:none transparent;
+    outline: none;
+    font-size: 16px;
+    size:70; 
+    width:48; 
+    height:48;
+    width:100%;
+    max-width: 90%;
+    display: flex;
+    align-items: center;
+    
+}
+.description{
+   // max-height: 25px;
+    overflow: hidden;
+    height: auto;
+}
+.collaborator{
+    margin-right: 5px;
+    margin-bottom: 8px;
+  
+}
+.remainder{
+    margin-right: 5px;
+    margin-bottom: 8px;
+}
+.label{
+    margin-right: 5px;
+    margin-bottom: 8px;
+}
+
+
+.gridView{
+    justify-content: center;
+    flex-flow: row wrap;
+    box-sizing: border-box;
+    display: flex;
+    flex: 1 1 100%;
+    max-width: 100%;
+    .cards{
+        width: 275px;
+        //height: 125px;
+        margin-left: 10px;
+        margin-bottom: 12px;
+        margin-top: 12px;
+        min-width: 280px;
+        border-radius: 15px;
+        
+    }
+    .pin_other{
+        
+        position:relative;
+        left:160px;
+    }
+    
+}
+.listView{
+   
+    width:100%;
+    .cards{
+
+        width: 600px;
+        //height: 125px;
+        //margin-left: 10px;
+        margin-bottom: 12px;
+        margin-top: 12px;
+        min-width: 280px;
+        border-radius: 15px;
+    }
+    .container{
+        display: flex;
+        justify-content: center;
+    }
+    .pin_other{
+        // margin-left:185px;
+        position:relative;
+        left:250px;
+    }
+}
+
+
+
+
+
+
+
+
+div .icon{
+    visibility: hidden;
+}
+div:hover .icon{
+    visibility: visible;
+}
+// div .pinned{
+//     visibility:hidden;
+// }
+// div:hover .pinned{
+//     visibility:visible;
+// }
+::ng-deep .mat-dialog-container{
+    padding:0px;
+}
+::ng-deep .mat-chip-list-wrapper .mat-standard-chip {
+    // margin-top:6px;
+    // margin-right:6px;
+    // margin-bottom:6px;
+    // margin-left:6px;
+    margin:6px 6px 6px 6px;
+}
+
+@media (min-width:320px) and (max-width:600px){
+    
+    .cards{
+        width:94%;
+        margin-left: 0px;
+        
+    }
+    .main{
+        width:100%;
+        margin-left:0px;
+    }
+    
+}
+
+
+
+
+
+

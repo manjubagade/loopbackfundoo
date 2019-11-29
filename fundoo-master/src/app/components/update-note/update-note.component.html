@@ -1,0 +1,37 @@
+<div class="main" fxFlex=100  fxFlex.xs=80  fxLayout="row" fxLayoutAlign="center center"   >
+    <div fxLayout="column"  fxLayoutAlign="start center"  class="note-card" fxFlex=100  >
+        
+        
+        <div class="container"  >
+            <div fxLayout="row" >
+                <div class="title" >
+                  <input matInput type="text" [(ngModel)]="title"    placeholder="Title"  style=" border:none transparent; outline:none; font-size: 18px; font-family: sans-serif;" required >
+                </div>
+                <div>
+                  <button mat-icon-button (click)="isPinned()">
+                    <mat-icon><img src="../../../assets/svg-icons/now using.svg" height="25px" width="25px"></mat-icon>
+                  </button>
+                </div>
+            </div>  
+            
+              <div class="description" >
+                  <textarea matInput cdkTextareaAutosize [(ngModel)]="description"   placeholder="Take a note.." #autosize="cdkTextareaAutosize"  
+                  style=" border:none transparent;
+                  outline: none;" required ></textarea>
+              </div>
+              
+            
+            <div>
+              <div fxLayout="row" fxLayoutAlign="space-between center"   >
+                <div class="icon" >
+                    <app-icon></app-icon>
+                </div> 
+                <div> 
+                  <button type="text" (click)="close()"  fxLayoutAlign="end center" style="padding: 0;border: none; background: none; font-size: 16px"  >Close</button>
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+    
+  </div>

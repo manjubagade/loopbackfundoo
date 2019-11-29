@@ -1,0 +1,142 @@
+<div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="10px" fxLayoutGap.sm="4px" fxLayoutGap.md="4px"
+  fxLayoutGap.xs="1px" fxFlex=100>
+  <div fxFlex=17>
+            <!-- <button mat-icon-button>
+              <mat-icon class="material-icons">notification_important</mat-icon>
+            </button> -->
+            <button  mat-button [matMenuTriggerFor]="remainderlist">
+              <mat-icon class="material-icons">notification_important</mat-icon>
+            </button>
+            <mat-menu #remainderlist="matMenu">
+              <button mat-menu-item (click)="setRemainderSchedule('today')"  >Later Today 
+                <span class="tab"  >8:00 PM</span> </button>
+              <button mat-menu-item (click)="setRemainderSchedule('tommorow')" >Tommorow 
+                <span class="tab">8:00 AM</span></button>
+              <button mat-menu-item (click)="setRemainderSchedule('nextweek')" >Next Week 
+                <span class="tab">Mon,8:00 AM</span> </button>
+
+              <button mat-menu-item [matMenuTriggerFor]="remaindersublist">
+                <img src="../../../assets/svg-icons/remainder.svg" height="14px" width="14px">
+                Pick Date&Time</button>
+            </mat-menu>
+            <mat-menu #remaindersublist="matMenu">
+
+                    <div>
+                      <h4 style="font-size:14px;">Pick Date and Time</h4>
+                    </div>
+                    <div id="divider"></div>
+
+                    <div fxLayout="column" fxLayoutAlign="space-evenly center">
+                          <div>
+                            <button mat-menu-item>
+                              <input matInput [owlDateTimeTrigger]="date" [owlDateTime]="date" [(ngModel)]="datetimepick" placeholder="Add a date">
+                              <owl-date-time [pickerType]="'calendar'" #date></owl-date-time>
+                            </button>
+
+                          </div>
+                          <div>
+                            <button mat-menu-item>
+                              <input matInput [owlDateTimeTrigger]="time" [owlDateTime]="time" [(ngModel)]="datetimepick" placeholder="Add a time">
+                              <owl-date-time [pickerType]="'timer'" #time></owl-date-time>
+                            </button>
+                          </div>
+                          <div>
+                                <button mat-menu-item [matMenuTriggerFor]="remaindersublist2" >
+                                  <input matInput type="text"  placeholder="select schedule"  />
+                                </button>
+                                <mat-menu #remaindersublist2="matMenu">
+                                    <!-- <button mat-menu-item (click)='selectSchedule()'>Daily</button>
+                                    <button mat-menu-item (click)='selectSchedule()'>Weekly</button>
+                                    <button mat-menu-item (click)='selectSchedule()'>Monthly</button>
+                                    <button mat-menu-item (click)='selectSchedule()'>Yearly</button> -->
+                                    <div fxLayout="column" (click)="$event.stopPropagation()" *ngFor='let repeat of schedule'  >
+                                        <button mat-menu-item (click)='selectSchedule()'>{{repeat}}</button>
+                                    </div>
+          
+                                </mat-menu>
+                          </div>
+                          <div id="divider"></div>
+
+                          <div fxLayout="row" fxLayoutAlign="end end" >
+                              <button type="text"  (click)="setRemainder(datetimepick)" 
+                                  style="padding: 0;border: none; background: none; font-size: 16px">Save</button>
+                          </div>
+                    </div>
+            </mat-menu>
+
+  </div>
+  <div fxFlex=16>
+    <button mat-icon-button (click)="collaborator(childMessage)" >
+      <mat-icon>person_add</mat-icon>
+    </button>
+  </div>
+  <div fxFlex=16>
+    <button mat-icon-button [matMenuTriggerFor]="menucolor" color="">
+      <mat-icon>palette</mat-icon>
+    </button>
+    <mat-menu #menucolor="matMenu">
+      <div fxLayout="row" (click)="$event.stopPropagation()" *ngFor='let row of color' fxLayoutGap="3px"
+        style="margin-bottom:5px;">
+        <div *ngFor='let col of row'>
+          <button mat-mini-fab color="" value="col" [style.background-color]="col" (click)="changeColor(col)"></button>
+        </div>
+
+      </div>
+
+    </mat-menu>
+  </div>
+  <div fxFlex=16>
+    <button mat-icon-button>
+      <mat-icon>insert_photo</mat-icon>
+    </button>
+
+  </div>
+  <div fxFlex=16>
+    <button mat-icon-button  *ngIf='!isarchive'  (click)='archiveNote()'  >
+      <mat-icon>archive</mat-icon>
+    </button>
+    <button mat-icon-button *ngIf='isarchive' (click)='unArchiveNote()' >
+      <mat-icon>unarchive</mat-icon>
+    </button>
+
+  </div>
+  <div fxFlex=19>
+    <!-- <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)='trashNote()'>Delete Note</button>
+      <button mat-menu-item>Add Label</button>
+    </mat-menu>  -->
+    <button mat-button [matMenuTriggerFor]="mainlist">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #mainlist="matMenu">
+      <button *ngIf='!isDeleted' mat-menu-item (click)='trashNote()'>Delete Note</button>
+      <button *ngIf='!isDeleted' mat-menu-item [matMenuTriggerFor]="sublist">Add Label</button>
+      <button *ngIf='isDeleted' mat-menu-item (click)='deleteNoteForever()'>DeleteNoteForever</button>
+      <button *ngIf='isDeleted' mat-menu-item (click)='restoreNote()'>restore</button>
+      
+
+    </mat-menu>
+
+
+    <mat-menu #sublist="matMenu">
+      <h4>Label note</h4>
+      <div (click)="$event.stopPropagation()">
+        <input type="text" [(ngModel)]="search" placeholder="Enter Label name" />
+      </div>
+      <div (click)="$event.stopPropagation()" *ngFor="let labels of receivedLabels | searchLabelFilter : search">
+        <mat-checkbox (click)="$event.stopPropagation()" (click)="addLabelToNotes(labels.id)" color="">
+          {{labels.label}}
+        </mat-checkbox>
+      </div>
+    </mat-menu>
+  </div>
+
+
+
+
+
+</div>

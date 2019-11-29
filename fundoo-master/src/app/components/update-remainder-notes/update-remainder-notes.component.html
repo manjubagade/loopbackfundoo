@@ -1,0 +1,43 @@
+
+<div fxFlex=100 fxLayout="column"  fxLayoutAlign="center center" >
+  
+        <div>
+          <h4 style="font-size:14px;">Pick Date and Time</h4>
+        </div>
+        <div id="divider"></div>
+
+        <div fxLayout="column" fxLayoutAlign="space-evenly center">
+              <div>
+                <button mat-menu-item>
+                  <input matInput [owlDateTimeTrigger]="date" [owlDateTime]="date" [(ngModel)]="datetimepick"  placeholder="Add a date">
+                  <owl-date-time [pickerType]="'calendar'" #date></owl-date-time>
+                </button>
+
+              </div>
+              <div>
+                <button mat-menu-item>
+                  <input matInput [owlDateTimeTrigger]="time" [owlDateTime]="time" [(ngModel)]="datetimepick" placeholder="Add a time">
+                  <owl-date-time [pickerType]="'timer'" #time></owl-date-time>
+                </button>
+              </div>
+              <div>
+                    <button mat-menu-item [matMenuTriggerFor]="remaindersublist2" >
+                      <input matInput type="text"  placeholder="select schedule"  />
+                    </button>
+                    <mat-menu #remaindersublist2="matMenu">
+                       
+                        <div fxLayout="column" (click)="$event.stopPropagation()" *ngFor='let repeat of schedule'  >
+                            <button mat-menu-item (click)='selectSchedule()'>{{repeat}}</button>
+                        </div>
+
+                    </mat-menu>
+              </div>
+              <div id="divider"></div>
+
+              <div fxLayout="row" fxLayoutAlign="end end" >
+                  <button type="text"  (click)="setRemainder(datetimepick)" 
+                      style="padding: 0;border: none; background: none; font-size: 16px">Save</button>
+              </div>
+        </div>
+      
+</div>

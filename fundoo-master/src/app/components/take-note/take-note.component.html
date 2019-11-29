@@ -1,0 +1,43 @@
+<div class="main" fxFlex=100 fxFlex.xs=100 fxLayout="row" fxLayoutAlign="center center" fxLayoutAlign.xs="center center" >
+  <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutAlign.xs="center center" class="note-card" fxFlex=50 fxFlex.md=80 fxFlex.sm=75
+    fxFlex.xs=100  [ngStyle]="{'background-color':setcolor }" >
+    <div *ngIf="!isOpen" (click)='isOpen=true' class="heading" fxLayout="row" fxLayoutAlign="start center">
+      <h5>Take a Note..</h5>
+    </div>
+
+    <div *ngIf='isOpen' style="width: 100%;">
+      <div fxLayout="row">
+        <div class="title">
+          <input matInput type="text" [formControl]="title" placeholder="Title"
+            style=" border:none transparent; outline:none; font-size: 16px; font-family: sans-serif;" required>
+        </div>
+        <div>
+          <button mat-icon-button (click)="isPinned()"  >
+            <mat-icon><img src="../../../assets/svg-icons/now using.svg" height="25px" width="25px"></mat-icon>
+          </button>
+        </div>
+      </div>
+
+
+      <div class="description">
+        <textarea matInput cdkTextareaAutosize [formControl]="description" placeholder="Take a note.."
+          #autosize="cdkTextareaAutosize" style=" border:none transparent;
+                  outline: none;" required></textarea>
+      </div>
+
+
+      <div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div class="icon">
+            <app-icon (colorChange)='setColor($event)' ></app-icon>
+          </div>
+          <div>
+            <button type="text" (click)="isOpen=false" (click)="addNote()" fxLayoutAlign="end center"
+              style="padding: 0;border: none; background: none; font-size: 16px">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+
+</div>

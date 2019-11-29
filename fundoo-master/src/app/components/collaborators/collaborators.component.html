@@ -1,0 +1,71 @@
+<div class="collaborators" fxFlex=100 fxFlex.sm=50 fxFlex.md=50 fxFlex.xs=50 >
+    <div>
+      <h3>Collaborators</h3>
+    </div>
+    <div class="divider"></div>
+    <div fxLayout="row" fxLayoutGap="10px" >
+          <div class="profile-image" style="border-radius: 100%;">
+            <img mat-card-avatar style="height: 50px;width: 50px;" [src]="imageurl" >
+
+          </div>
+          <div>
+              <mat-card-title style="font-size:14px;font-family: Roboto,Arial,sans-serif;font-weight: bold;">{{username}}(Owner)
+              </mat-card-title>
+              <mat-card-title style="font-size:14px;font-family: Roboto,Arial,sans-serif;">{{email}}
+              </mat-card-title>
+          </div>
+          
+    </div>
+    <div class="colla-list" fxLayout="row"  fxLayoutGap="10px" *ngFor='let coll of add_collaborators' >
+        <div>
+              <button class="round-image" >{{coll.firstName[0].toUpperCase()}}{{coll.lastName[0].toUpperCase()}}</button>
+
+        </div>
+       
+        <div>
+              <mat-card-title style="font-size:14px;font-family: Roboto,Arial,sans-serif;font-weight: bold;">{{coll.firstName | titlecase}}{{coll.lastName | titlecase}}
+              </mat-card-title>
+              <mat-card-title style="font-size:14px;font-family: Roboto,Arial,sans-serif;">{{coll.email}}
+              </mat-card-title>
+        </div>
+        <div>
+          <button mat-icon-button (click)="deleteCollaborator(coll)" >
+            <mat-icon class="mat-icon" >close</mat-icon>
+          </button>
+        </div>
+       
+    </div>
+      <div fxLayout="row" fxLayoutGap="10px"  >
+        
+        <img mat-card-avatar style="height: 50px;width: 50px;" src="../../../assets/images/add_person.png" >
+      
+              <form>
+                <mat-form-field>
+                  <input type="text" class="emailList" matInput placeholder="Person or email to share with" [matAutocomplete]='auto' (keyup)='searchUserList($event)' />
+                  <mat-autocomplete #auto="matAutocomplete" [displayWith]="display" >
+                    <mat-option *ngFor='let user of user_list' [value]='user.email' (click)="addCollaborator(user)" >{{user.email}}</mat-option>
+                  </mat-autocomplete>
+
+                </mat-form-field>
+            </form>
+      </div>
+    <div class="divider"></div>
+
+    <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="60px"  >
+        <button type="text" class="save" (click)="cancel()"  >Cancel</button>
+        <button type="text" class="save" (click)="save()" >Save</button>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<!-- <button mat-button [matMenuTriggerFor]="belowMenu">Below</button>
+<mat-menu #belowMenu="matMenu" yPosition="below">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu> -->

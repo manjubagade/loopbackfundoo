@@ -1,0 +1,98 @@
+<div class="main" fxFlex=100 fxLayout='row' fxLayoutAlign='center center'>
+  <mat-card fxFlex=40 fxFlex.md=60 fxFlex.sm=70 fxFlex.xs=100>
+
+    <div fxLayout="column">
+          <div fxLayout='row' fxLayoutAlign='center center'>
+            <span class="l1">F</span>
+            <span class="l2">u</span>
+            <span class="l3">n</span>
+            <span class="l4">d</span>
+            <span class="l5">o</span>
+            <span class="l6">o</span>
+          </div>
+
+          <div fxLayoutAlign='center center' fxFlexOffset="5">
+            <mat-card-header>
+              <mat-card-title>Create an Fundoo Account</mat-card-title>
+            </mat-card-header>
+          </div>
+          <form class = "registerForm">
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" >
+
+                        <div class="userName" fxFlex=48>
+                          <mat-form-field fxFlex=100 appearance="outline">
+                            <mat-label>firstName</mat-label>
+                            <input matInput name="firstName" [formControl]="firstName" required>
+                            <mat-error *ngIf="firstName.invalid">
+                              {{firstNameErrorMessage()}}
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+
+                        <div class="userName" fxFlex=48>
+                          <mat-form-field fxFlex=100 class="example-width-1" appearance="outline">
+                            <mat-label>lastName</mat-label>
+                            <input matInput name="lastName" [formControl]="lastName" required>
+                            <mat-error *ngIf="lastName.invalid">
+                              {{lastNameErrorMessage()}}
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+
+                </div>
+
+                <div fxLayout.xs="column" fxLayout.xs="start center" fxLayoutGap.sm="10px" fxLayoutGap.xs="10px">
+                        <mat-form-field class="example-full-width-1" appearance="outline">
+                          <mat-label>username</mat-label>
+                          <!-- <span matSuffix>@gmail.com</span> -->
+                          <input matInput name="userName" [formControl]="userName" required>
+                          <mat-error *ngIf="userName.invalid">
+                            {{userNameErrorMessage()}}
+                          </mat-error>
+                          <mat-hint>You can use letters,numbers and special characters..</mat-hint>
+
+                        </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" >
+                      
+                    <div class="password-val" fxFlex=48>
+                        <mat-form-field fxFlex=100 appearance="outline">
+                        <mat-label>password</mat-label>
+
+                            <input matInput type="password" name="password" [formControl]="password" required>
+                            <mat-error *ngIf="password.invalid">
+                              {{paswordErrorMessage()}}
+                            </mat-error>
+                            <mat-hint>minimum atleast 6 characters..</mat-hint>
+
+                          </mat-form-field>
+                    </div>
+                          
+                    <div class="password-val" fxFlex=48>
+                        <mat-form-field fxFlex=100 appearance="outline">
+                        <mat-label>confirmPassword</mat-label>
+                        <input matInput type="password" name="confirmPassword" [formControl]="confirmPassword" required>
+                        <mat-error *ngIf="confirmPassword.invalid">
+                          {{confirmpaswordErrorMessage()}}
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+
+                    <div>
+                        <a href=""  (click)="login">Signin instead</a>
+                    </div>
+                    <div>
+                        <button mat-raised-button (click)="getRegister()"  color="primary">Register</button>
+                    </div>
+                </div>
+
+            
+          </form>  
+    </div>
+  </mat-card>
+
+</div>

@@ -1,0 +1,123 @@
+<div fxFlex=100 class="main" fxLayout='row' fxLayoutAlign='center center'>
+  <mat-card fxFlex=30 fxFlex.md=40 fxFlex.sm=50 fxFlex.xs=100>
+
+    <div fxLayout="column">
+      <div fxLayout='row' fxLayoutAlign='center center'>
+        <span class="l1">F</span>
+        <span class="l2">u</span>
+        <span class="l3">n</span>
+        <span class="l4">d</span>
+        <span class="l5">o</span>
+        <span class="l6">o</span>
+      </div>
+
+      <div fxLayoutAlign="center center" fxFlexOffset="5">
+        <mat-card-header>
+          <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>username</mat-label>
+          <input matInput name="userName" [formControl]="userName" autocomplete="off" required>
+          <mat-error *ngIf="userName.invalid">
+            {{userNameErrorMessage()}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>password</mat-label>
+          <input matInput type="password" name="password" [formControl]="password" required>
+          <mat-error *ngIf="password.invalid">
+            {{paswordErrorMessage()}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-card-actions class="link-button">
+
+          <div fxLayout="row" fxLayoutAlign="space-around center" >
+              <div>
+                  <a href="forgot-password" id="link1" (click)="forgot_password()">Forgot Password..?</a>
+
+              </div>
+              <div>
+                  <button mat-raised-button (click)="getLogin()" id="log-btn" color="primary">Login</button>
+
+              </div>
+          </div>
+          <div fxLayout="column" fxLayoutAlign="center center" style="margin-top: 10px; ">
+            <a href="/register" id="link2" (click)="register()">Create an acount</a>
+          </div>
+
+        </mat-card-actions>
+      </div>
+    </div>
+
+  </mat-card>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+<div class="main" fxLayout='row' fxLayoutAlign='center center' fxFlex=100>
+
+  <mat-card fxFlex=30 class="example-card">
+     <mat-card-header fxLayoutAlign='center center'>
+       <mat-card-title>Fundoo Login</mat-card-title>
+     </mat-card-header>
+     <mat-card-content>
+       <form class="example-form">
+         <table class="example-full-width" fxLayoutAlign='center center' cellspacing="0">
+           <tr>
+             <td>
+               <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>username</mat-label>
+
+               <input matInput  name="username" required>
+               </mat-form-field>
+             </td>
+           </tr>
+           <tr>
+           <td><mat-form-field class="example-full-width" appearance="outline" >
+              <mat-label>password</mat-label>
+
+             <input matInput  type="password" name="password" required>
+           </mat-form-field></td>
+         </tr></table>
+       </form>
+      
+     </mat-card-content>
+     <mat-card-actions class="link-button" >
+       <button mat-raised-button (click)="login()" id = "log-btn" color="primary">Login</button> 
+       <a href="#" id = "link1" (click)="Forgot-password">Forgot Password..?</a><br> &nbsp; &nbsp; <br> 
+       <a href="/register" id = "link2" (click)="Register">Create an acount</a>
+
+     </mat-card-actions>
+    
+    </mat-card>
+  </div> -->

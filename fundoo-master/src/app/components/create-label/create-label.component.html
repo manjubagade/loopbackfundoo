@@ -1,0 +1,59 @@
+<div fxFlex=100 fxFlex.xs=100>
+  <mat-card class="update-card" >
+    <div>
+      <mat-card-title>
+        <h5>Edit labels</h5>
+      </mat-card-title>
+    </div>
+    <div fxLayoutAlign="row" fxLayoutAlign="center center">
+      <div (mouseover)="changeText=true" (mouseout)="changeText=false">
+        <button mat-icon-button (click)='close()'>
+          <span *ngIf="!changeText"><img src="../../../assets/svg-icons/multiply.svg" height="15px" width="15px"></span>
+          <span *ngIf="changeText"><img src="../../../assets/svg-icons/icons8-plus-24.png" height="15px"
+              width="15px"></span>
+
+        </button>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Create new label" [formControl]="labelname">
+        </mat-form-field>
+      </div>
+
+
+
+      <div>
+        <button mat-icon-button (click)="addLabels()">
+          <img src="../../../assets/svg-icons/checkmark.svg" height="50px" width="50px">
+        </button>
+      </div>
+
+    </div>
+    <div fxLayoutAlign="row" fxLayoutAlign="center center" *ngFor='let labels of getLabels'>
+
+      <button mat-icon-button (click)="deleteLabels(labels.id)" (mouseover)="changeText=true" (mouseout)="changeText=false" >
+        <span *ngIf="!changeText">
+          <mat-icon>label</mat-icon>
+        </span>
+        <span *ngIf="changeText">
+          <mat-icon>delete</mat-icon>
+        </span>
+      </button>
+
+      <input matInput value="{{labels.label}}" [formControl]="editname">
+      <button mat-icon-button (click)="editLabels(labels.id)">
+        <mat-icon>create</mat-icon>
+      </button>
+
+
+
+    </div>
+    <div class="divider"></div>
+
+    <div class="footer" fxLayout="row" fxLayoutAlign="end center">
+      <button mat-raised-button (click)="addLabels()" id="input-btn" color="">Done</button>
+
+    </div>
+  </mat-card>
+</div>
+

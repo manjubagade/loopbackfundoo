@@ -1,0 +1,33 @@
+.cards{
+
+    width: 275px;
+    height: 100px;
+    margin-left: 28px;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    min-width: 280px;
+    
+}
+.title{
+    border:none transparent;
+    outline: none;
+    font-size: 16px;
+    size:70; 
+    width:48; 
+    height:48;
+    width:85%;
+    max-width: 90%;
+    margin-bottom: 15px;
+}
+div .icon{
+    visibility: hidden;
+}
+div:hover .icon{
+    visibility: visible;
+}
+div .pinned{
+    visibility:hidden;
+}
+div:hover .pinned{
+    visibility:visible;
+}

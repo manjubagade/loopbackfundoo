@@ -1,0 +1,145 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches" fxFlex=100>
+  <mat-toolbar color="white" class="example-toolbar">
+    <div fxFlex=100>
+      <div fxFlex=4 fxFlex.sm=6 fxFlex.md=6 fxFlex.xs=10>
+        <button mat-icon-button (click)="snav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <div class="fun-img"  fxFlex=4 fxFlex.sm=12 fxFlex.md=6 >
+        <img
+          src="../../../assets/images/logo.png">
+      </div>
+
+      <div class="header"  fxFlex=14 fxFlex.md=15 fxFlex.sm=15 fxFlex.xs=5>
+        <h1 class="example-app-name">{{HeaderName}}</h1>
+      </div>
+
+      <div class="search" fxLayoutAlign="center center" fxFlexOffset='5' fxFlexOffset.lg='5' fxFlex=50 fxFlex.sm=35
+        fxFlex.md=50 fxFlex.xs=75 >
+        <mat-form-field appearance="outline" [style.fontSize.px]=10 fxFlex="100">
+          <mat-icon matPrefix>search</mat-icon>
+          <input matInput type="search" fxFlexOffset="2" placeholder="Search" [style.fontSize.px]=15
+            (click)='getingNote()' (keyup)='searchNotes($event)'>
+        </mat-form-field>
+
+      </div>
+
+      <!-- <div class="refresh"  fxFlex=13 fxFlex.md=5 fxFlex.sm=2 fxFlex.xs=0 >
+                
+            </div> -->
+
+      <div class="grid-list" fxFlex=18 fxFlex.md=5 fxFlex.sm=20 fxFlex.xs=4>
+        
+        <button mat-icon-button  *ngIf='isView' (click)="grid_list()">
+          <mat-icon>grid_view</mat-icon>
+        </button>
+        <button mat-icon-button   *ngIf='!isView' (click)="grid_list()">
+          <mat-icon >
+            <img src="../../../assets/svg-icons/listview.svg">
+          </mat-icon>
+        </button>
+        
+      </div>
+
+      <div fxFlex=10 fxFlex.md=18 fxFlex.sm=12 fxFlex.xs=15 fxLayoutAlign="end center">
+        <img mat-card-avatar [matMenuTriggerFor]="menu" [src]="imageurl">
+
+
+
+        <mat-menu #menu="matMenu">
+          <div fxLayout="row" fxLayoutGap="15px">
+            <div class="profile-image" style="border-radius: 100%;">
+              <img mat-card-avatar style="height: 70px;width: 70px;" [src]="imageurl" (click)="changeProfile()">
+
+            </div>
+            <div class="datails" >
+              <mat-card-title style="font-size:14px;font-family: Roboto,Arial,sans-serif;">{{username}}
+              </mat-card-title>
+              <mat-card-title style="font-size:14px;font-family: Roboto,Arial,sans-serif;">{{email}}
+              </mat-card-title>
+            </div>
+
+          </div>
+          <div class="divider"></div>
+          <div class="footer" fxLayout="row" fxLayoutAlign="space-between center" fxFlex=100>
+            <button style="margin-left:15px;" mat-raised-button (click)="addAccount" id="add-btn" color="">Add account</button>
+            <button style="margin-right: 15px;" mat-raised-button (click)="logout()" id="logout-btn" color="">Sign out</button>
+
+
+          </div>
+
+        </mat-menu>
+
+
+
+      </div>
+    </div>
+
+  </mat-toolbar>
+
+
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56" class="sidenav-content">
+      <mat-nav-list>
+        <div class="sidenavbar">
+          <div class="note" (click)="HeaderName='FundooNotes'"
+            [ngClass]="{'sidenav':HeaderName != 'FundooNotes','sidenav-list':HeaderName == 'FundooNotes'}">
+            <button mat-button routerLink="note" class="round" (click)='Note'>
+              <mat-icon style="margin-right:24px;">lightbulb_outline</mat-icon>Note
+            </button>
+          </div>
+
+          <div class="remainder" (click)="HeaderName='Remainder'"
+            [ngClass]="{'sidenav':HeaderName != 'Remainder','sidenav-list':HeaderName == 'Remainder'}">
+            <button mat-button routerLink="remainder" class="round" (click)='Remainder'>
+              <mat-icon style="margin-right:24px;">notifications_none</mat-icon>Remainder
+            </button>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="label" >
+              <mat-label> Lables</mat-label>
+              <div  fxLayout="row" fxLayoutAlign="space-around center" 
+                          *ngFor='let label of getLabels'>
+                  <mat-icon>label</mat-icon>
+
+                <a mat-list-item class="round">{{label.label}}</a>
+              </div>
+          </div>
+          <div class='editlabel' (click)="HeaderName='EditLable'"
+                [ngClass]="{'sidenav':HeaderName != 'EditLable','sidenav-list':HeaderName == 'EditLable'}"
+                (click)='editLable()'>
+                <button mat-button routerLink="." class="round">
+                  <mat-icon style="margin-right:24px;">create</mat-icon>Edit Lables
+                </button>
+          </div>
+          
+          <div class="divider"></div>
+          <div class="archive"  (click)="HeaderName='Archive'"
+            [ngClass]="{'sidenav':HeaderName != 'Archive','sidenav-list':HeaderName == 'Archive'}">
+            <button mat-button routerLink="archive" class="round" (click)='Archive'>
+              <mat-icon style="margin-right:24px;">archive</mat-icon>Archive
+            </button>
+          </div>
+
+
+
+          <div class="trash" (click)="HeaderName='Trash'"
+            [ngClass]="{'sidenav':HeaderName != 'Trash','sidenav-list':HeaderName == 'Trash'}">
+            <button mat-button routerLink="trash" class="round" (click)='Trash'>
+              <mat-icon style="margin-right:24px;">delete</mat-icon>Trash
+            </button>
+          </div>
+        </div>
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

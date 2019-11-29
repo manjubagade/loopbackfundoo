@@ -1,0 +1,223 @@
+<!-- <div class="notes" fxFlex=100 style="justify-content: center;" fxLayout="row wrap"  fxLayout.xs="column" fxLayout.sm="row wrap" fxLayout.md="row wrap">
+    <div *ngFor="let note of allCards" class="container" fxLayoutGap="2px">
+       
+
+        <div *ngIf="note.isPined==false" >
+            <mat-card class="cards" [ngStyle]="{'background-color': note.color}">
+
+
+
+                <div fxLayout="row">
+                    <div class="title" fxLayoutGap="10px">
+                        <mat-card-title style="font-size:16px;font-family:Roboto,Arial,sans-serif;" (click)="modifyNote(note)">{{note.title}}
+                        </mat-card-title>
+                    </div>
+                    <div class="pinned" >
+                        <button mat-icon-button (click)="isPined(note)" >
+                            <mat-icon><img src="../../../assets/svg-icons/now using.svg"  height="25px" width="25px">
+                            </mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <div class="description"   >
+                    <mat-card-title style="font-size:16px;font-family:Roboto,Arial,sans-serif;">{{note.description}}</mat-card-title>
+                </div>
+                <div class="remainder"  fxLayout="row wrap"  >
+                    <mat-chip-list  >
+                        <mat-chip *ngFor="let remainder of note.reminder" [removable]="removable" (removed)="deleteRemainder(note.id,note.reminder)" >
+                            {{remainder | date:'MMM d, y, h:mm a'}}
+                            <mat-icon matChipRemove *ngIf="removable" >cancel</mat-icon>
+                        </mat-chip>
+                             
+                    </mat-chip-list>
+                </div>
+               
+               <div class="label" fxLayout="row wrap"  >
+                    <mat-chip-list >
+                        <mat-chip *ngFor="let labels of note.noteLabels"  [removable]="removable" (removed)="deleteNoteLabel(note.id,labels.id)">
+                            {{labels.label}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                             
+                    </mat-chip-list>
+                </div>
+                <div class="collaborator" fxLayout="row wrap" fxLayoutGap="5px"    >
+                    
+                        <button  mat-mini-fab *ngFor="let coll of note.collaborators" >
+                            {{coll.firstName[0].toUpperCase()}}
+                            
+                        </button>
+                             
+                </div>
+                <div class="icon"  >
+                        <app-icon [childMessage]='note' [receivedLabels]='getLabels' (reloadEvent)="reloadAction($event)" ></app-icon>
+                </div>
+
+            </mat-card>
+        </div>
+
+
+
+
+    </div>
+
+</div> -->
+
+
+
+<div class="notes" fxFlex=100 style="justify-content: center;" fxLayout="row wrap" fxLayout.xs="column"
+    fxLayout.sm="row wrap" fxLayout.md="row wrap">
+    
+    <div *ngIf="pinnedNotes.length > 0" [ngClass]="value=='row' ? 'gridView':'listView'">
+        <div class="pin_other"   >
+            PINNED
+           
+        </div>
+        <div *ngFor="let note of pinnedNotes" class="container" fxLayoutGap="2px">
+
+
+
+            <mat-card class="cards" [ngStyle]="{'background-color': note.color}">
+
+
+
+                <div fxLayout="row">
+                    <div class="title" fxLayoutGap="10px">
+                        <mat-card-title style="font-size:16px;font-family:Roboto,Arial,sans-serif;"
+                            (click)="modifyNote(note)">{{note.title}}
+                        </mat-card-title>
+                    </div>
+                    <div class="pinned">
+                        <button mat-icon-button (click)="isUnPined(note)">
+                            <mat-icon><img src="../../../assets/svg-icons/unpin.svg" height="25px" width="25px">
+                            </mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    <mat-card-title style="font-size:16px;font-family:Roboto,Arial,sans-serif;"
+                        (click)="modifyNote(note)">{{note.description}}</mat-card-title>
+                </div>
+                <div class="remainder" fxLayout="row wrap">
+                    <mat-chip-list>
+                        <mat-chip *ngFor="let remainder of note.reminder" (click)="modifyRemainder(note)"
+                            [removable]="removable" (removed)="deleteRemainder(note.id,note.reminder)">
+                            {{remainder | date:'MMM d, y, h:mm a'}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+
+                    </mat-chip-list>
+                </div>
+
+                <div class="label" fxLayout="row wrap">
+                    <mat-chip-list>
+                        <mat-chip *ngFor="let labels of note.noteLabels" [removable]="removable"
+                            (removed)="deleteNoteLabel(note.id,labels.id)">
+                            {{labels.label}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+
+                    </mat-chip-list>
+                </div>
+                <div class="collaborator" fxLayout="row wrap" fxLayoutGap="5px">
+
+                    <button mat-mini-fab *ngFor="let coll of note.collaborators">
+                        {{coll.firstName[0].toUpperCase()}}
+
+                    </button>
+
+                </div>
+                <div class="icon">
+                    <app-icon [childMessage]='note' [receivedLabels]='getLabels' (reloadEvent)="reloadAction($event)">
+                    </app-icon>
+                </div>
+
+            </mat-card>
+
+
+
+
+
+        </div>
+    </div>
+
+
+    
+
+
+        
+        <div *ngIf="unpinnedNotes.length > 0" [ngClass]="value=='row' ? 'gridView':'listView'">
+            <div class="pin_other">
+                OTHERS
+            </div>
+
+            <div *ngFor="let note of unpinnedNotes" class="container" fxLayoutGap="2px">
+
+
+
+                <mat-card class="cards" [ngStyle]="{'background-color': note.color}">
+
+
+
+                    <div fxLayout="row">
+                        <div class="title" fxLayoutGap="10px">
+                            <mat-card-title style="font-size:16px;font-family:Roboto,Arial,sans-serif;"
+                                (click)="modifyNote(note)">{{note.title}}
+                            </mat-card-title>
+                        </div>
+                        <div class="pinned">
+                            <button mat-icon-button (click)="isPined(note)">
+                                <mat-icon><img src="../../../assets/svg-icons/pin.svg" height="25px" width="25px">
+                                </mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <mat-card-title style="font-size:16px;font-family:Roboto,Arial,sans-serif;">{{note.description}}
+                        </mat-card-title>
+                    </div>
+                    <div class="remainder" fxLayout="row wrap">
+                        <mat-chip-list>
+                            <mat-chip *ngFor="let remainder of note.reminder" [removable]="removable"
+                                (removed)="deleteRemainder(note.id,note.reminder)">
+                                {{remainder | date:'MMM d, y, h:mm a'}}
+                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+
+                        </mat-chip-list>
+                    </div>
+
+                    <div class="label" fxLayout="row wrap">
+                        <mat-chip-list>
+                            <mat-chip *ngFor="let labels of note.noteLabels" [removable]="removable"
+                                (removed)="deleteNoteLabel(note.id,labels.id)">
+                                {{labels.label}}
+                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+
+                        </mat-chip-list>
+                    </div>
+                    <div class="collaborator" fxLayout="row wrap" fxLayoutGap="5px">
+
+                        <button mat-mini-fab *ngFor="let coll of note.collaborators">
+                            {{coll.firstName[0].toUpperCase()}}
+
+                        </button>
+
+                    </div>
+                    <div class="icon">
+                        <app-icon [childMessage]='note' [receivedLabels]='getLabels'
+                            (reloadEvent)="reloadAction($event)"></app-icon>
+                    </div>
+
+                </mat-card>
+
+
+
+
+
+            </div>
+        </div>
+    
+
+</div>
