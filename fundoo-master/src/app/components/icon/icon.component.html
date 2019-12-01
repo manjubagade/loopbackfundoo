@@ -5,7 +5,7 @@
               <mat-icon class="material-icons">notification_important</mat-icon>
             </button> -->
             <button  mat-button [matMenuTriggerFor]="remainderlist">
-              <mat-icon class="material-icons">notification_important</mat-icon>
+              <mat-icon class="material-icons"><img src="../../../assets/svg-icons/reminder.svg"></mat-icon>
             </button>
             <mat-menu #remainderlist="matMenu">
               <button mat-menu-item (click)="setRemainderSchedule('today')"  >Later Today 
@@ -16,7 +16,7 @@
                 <span class="tab">Mon,8:00 AM</span> </button>
 
               <button mat-menu-item [matMenuTriggerFor]="remaindersublist">
-                <img src="../../../assets/svg-icons/remainder.svg" height="14px" width="14px">
+                <img src="../../../assets/svg-icons/reminder.svg" height="14px" width="14px">
                 Pick Date&Time</button>
             </mat-menu>
             <mat-menu #remaindersublist="matMenu">
@@ -67,12 +67,12 @@
   </div>
   <div fxFlex=16>
     <button mat-icon-button (click)="collaborator(childMessage)" >
-      <mat-icon>person_add</mat-icon>
+      <mat-icon><img src="../../../assets/svg-icons/collaborater.svg"> </mat-icon>
     </button>
   </div>
   <div fxFlex=16>
     <button mat-icon-button [matMenuTriggerFor]="menucolor" color="">
-      <mat-icon>palette</mat-icon>
+      <mat-icon><img src="../../../assets/svg-icons/colorlist.svg"></mat-icon>
     </button>
     <mat-menu #menucolor="matMenu">
       <div fxLayout="row" (click)="$event.stopPropagation()" *ngFor='let row of color' fxLayoutGap="3px"
@@ -87,13 +87,13 @@
   </div>
   <div fxFlex=16>
     <button mat-icon-button>
-      <mat-icon>insert_photo</mat-icon>
+      <mat-icon><img src="../../../assets/svg-icons/gallary.svg"></mat-icon>
     </button>
 
   </div>
   <div fxFlex=16>
     <button mat-icon-button  *ngIf='!isarchive'  (click)='archiveNote()'  >
-      <mat-icon>archive</mat-icon>
+      <mat-icon><img src="../../../assets/svg-icons/archive.svg"></mat-icon>
     </button>
     <button mat-icon-button *ngIf='isarchive' (click)='unArchiveNote()' >
       <mat-icon>unarchive</mat-icon>

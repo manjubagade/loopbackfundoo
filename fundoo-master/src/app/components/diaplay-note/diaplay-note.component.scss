@@ -95,18 +95,22 @@
 }
 
 
-
-
-
-
-
-
-div .icon{
-    visibility: hidden;
-}
-div:hover .icon{
+#Hidden {
+    visibility: hidden
+  }
+  #DivForHoverItem:hover #Hidden {
     visibility: visible;
-}
+  }
+
+
+
+
+// div .icon{
+//     visibility: hidden;
+// }
+// div:hover .icon{
+//     visibility: visible;
+// }
 // div .pinned{
 //     visibility:hidden;
 // }

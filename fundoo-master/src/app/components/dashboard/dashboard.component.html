@@ -104,7 +104,7 @@
               <mat-label> Lables</mat-label>
               <div  fxLayout="row" fxLayoutAlign="space-around center" 
                           *ngFor='let label of getLabels'>
-                  <mat-icon>label</mat-icon>
+                  <mat-icon><img src="../../../assets/svg-icons/label.svg"></mat-icon>
 
                 <a mat-list-item class="round">{{label.label}}</a>
               </div>
@@ -113,7 +113,7 @@
                 [ngClass]="{'sidenav':HeaderName != 'EditLable','sidenav-list':HeaderName == 'EditLable'}"
                 (click)='editLable()'>
                 <button mat-button routerLink="." class="round">
-                  <mat-icon style="margin-right:24px;">create</mat-icon>Edit Lables
+                  <mat-icon style="margin-right:24px;"><img src="../../../assets/svg-icons/edit.svg"></mat-icon>Edit Lables
                 </button>
           </div>
           
@@ -121,7 +121,7 @@
           <div class="archive"  (click)="HeaderName='Archive'"
             [ngClass]="{'sidenav':HeaderName != 'Archive','sidenav-list':HeaderName == 'Archive'}">
             <button mat-button routerLink="archive" class="round" (click)='Archive'>
-              <mat-icon style="margin-right:24px;">archive</mat-icon>Archive
+              <mat-icon style="margin-right:24px;"><img src="../../../assets/svg-icons/archive.svg"></mat-icon>Archive
             </button>
           </div>
 
@@ -130,7 +130,7 @@
           <div class="trash" (click)="HeaderName='Trash'"
             [ngClass]="{'sidenav':HeaderName != 'Trash','sidenav-list':HeaderName == 'Trash'}">
             <button mat-button routerLink="trash" class="round" (click)='Trash'>
-              <mat-icon style="margin-right:24px;">delete</mat-icon>Trash
+              <mat-icon style="margin-right:24px;"><img src="../../../assets/svg-icons/delete.svg"></mat-icon>Trash
             </button>
           </div>
         </div>
