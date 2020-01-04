@@ -28,15 +28,18 @@
       <!-- <div class="refresh"  fxFlex=13 fxFlex.md=5 fxFlex.sm=2 fxFlex.xs=0 >
                 
             </div> -->
+            <!-- <div>
+              <mat-icon>refresh</mat-icon>
+            </div> -->
 
       <div class="grid-list" fxFlex=18 fxFlex.md=5 fxFlex.sm=20 fxFlex.xs=4>
         
         <button mat-icon-button  *ngIf='isView' (click)="grid_list()">
-          <mat-icon>grid_view</mat-icon>
+          <mat-icon><img src="../../../assets/svg-icons/listview.svg"></mat-icon>
         </button>
         <button mat-icon-button   *ngIf='!isView' (click)="grid_list()">
           <mat-icon >
-            <img src="../../../assets/svg-icons/listview.svg">
+            grid_view
           </mat-icon>
         </button>
         
@@ -77,6 +80,9 @@
     </div>
 
   </mat-toolbar>
+  <div>
+    <mat-divider></mat-divider>
+  </div>
 
 
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
