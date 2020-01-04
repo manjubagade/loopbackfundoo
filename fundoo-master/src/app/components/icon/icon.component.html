@@ -5,7 +5,7 @@
               <mat-icon class="material-icons">notification_important</mat-icon>
             </button> -->
             <button  mat-button [matMenuTriggerFor]="remainderlist">
-              <mat-icon class="material-icons"><img src="../../../assets/svg-icons/reminder.svg"></mat-icon>
+              <mat-icon class="material-icons" matTooltip="Remind Me"><img src="../../../assets/svg-icons/reminder.svg" ></mat-icon>
             </button>
             <mat-menu #remainderlist="matMenu">
               <button mat-menu-item (click)="setRemainderSchedule('today')"  >Later Today 
@@ -67,12 +67,12 @@
   </div>
   <div fxFlex=16>
     <button mat-icon-button (click)="collaborator(childMessage)" >
-      <mat-icon><img src="../../../assets/svg-icons/collaborater.svg"> </mat-icon>
+      <mat-icon matTooltip="Collaborator"><img src="../../../assets/svg-icons/collaborater.svg"> </mat-icon>
     </button>
   </div>
   <div fxFlex=16>
     <button mat-icon-button [matMenuTriggerFor]="menucolor" color="">
-      <mat-icon><img src="../../../assets/svg-icons/colorlist.svg"></mat-icon>
+      <mat-icon matTooltip="Change color"><img src="../../../assets/svg-icons/colorlist.svg"></mat-icon>
     </button>
     <mat-menu #menucolor="matMenu">
       <div fxLayout="row" (click)="$event.stopPropagation()" *ngFor='let row of color' fxLayoutGap="3px"
@@ -87,16 +87,16 @@
   </div>
   <div fxFlex=16>
     <button mat-icon-button>
-      <mat-icon><img src="../../../assets/svg-icons/gallary.svg"></mat-icon>
+      <mat-icon  matTooltip="Add Image"><img src="../../../assets/svg-icons/gallary.svg"></mat-icon>
     </button>
 
   </div>
   <div fxFlex=16>
     <button mat-icon-button  *ngIf='!isarchive'  (click)='archiveNote()'  >
-      <mat-icon><img src="../../../assets/svg-icons/archive.svg"></mat-icon>
+      <mat-icon matTooltip="Archive"><img src="../../../assets/svg-icons/archive.svg"></mat-icon>
     </button>
     <button mat-icon-button *ngIf='isarchive' (click)='unArchiveNote()' >
-      <mat-icon>unarchive</mat-icon>
+      <mat-icon matTooltip="UnArchive">unarchive</mat-icon>
     </button>
 
   </div>
@@ -109,7 +109,7 @@
       <button mat-menu-item>Add Label</button>
     </mat-menu>  -->
     <button mat-button [matMenuTriggerFor]="mainlist">
-      <mat-icon>more_vert</mat-icon>
+      <mat-icon matTooltip="More">more_vert</mat-icon>
     </button>
 
     <mat-menu #mainlist="matMenu">
